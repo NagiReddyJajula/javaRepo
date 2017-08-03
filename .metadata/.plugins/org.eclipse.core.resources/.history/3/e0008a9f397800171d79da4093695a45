@@ -1,0 +1,22 @@
+package com.app.dao.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate4.HibernateTemplate;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.app.axis.AxisAcc;
+import com.app.dao.IAxisDao;
+
+@Repository
+@Transactional(readOnly=false)
+public class AxisDaoImpl implements IAxisDao {
+
+	@Autowired
+	private HibernateTemplate ht;
+	
+	public int createAccount(AxisAcc acc) {
+		//System.out.println("dao");
+		return (Integer)ht.save(acc);
+	}
+}

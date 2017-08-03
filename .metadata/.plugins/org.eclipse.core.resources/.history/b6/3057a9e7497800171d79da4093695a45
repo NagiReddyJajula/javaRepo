@@ -1,0 +1,42 @@
+package com.app.dao.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate4.HibernateTemplate;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.app.axis.AxisAcc;
+import com.app.dao.IAxisDao;
+
+@Repository
+@Transactional(readOnly=false)
+public class AxisDaoImpl implements IAxisDao {
+
+	@Autowired
+	private HibernateTemplate ht;
+	
+	public int createAccount(AxisAcc acc) {
+		acc.setAccNo(1);
+		System.out.println(acc);
+		//System.out.println("dao");
+		return (Integer)ht.save(acc);
+	}
+	public List<AxisAcc> viewAllAccounts() {
+
+		return ht.loadAll(AxisAcc.class);
+	}
+	public AxisAcc getAccountDetails(int accNo) {
+		return ht.get(AxisAcc.class,accNo);
+	}
+	public void updateAccount(AxisAcc acc){
+		ht.saveOrUpdate(acc);
+	}
+	public boolean checkBalance(long cardNo) {
+		String[] str={"p1"};
+		Object[] o={cardNo};
+		boolean flag=ht.find("select  acc.amount from "+AxisAcc.class.getName()+"acc where acc.amount=:p1",str,o)!=null?true:false;
+		return flag;
+	}
+}

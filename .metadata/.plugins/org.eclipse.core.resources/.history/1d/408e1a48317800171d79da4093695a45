@@ -1,0 +1,21 @@
+package com.app.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.app.axis.AxisAcc;
+
+@Controller
+public class AxisController {
+
+	@RequestMapping("/createAxisAccount")
+	public String createAxisAccount(){
+		return "axisAccountCreate";
+	}
+	@RequestMapping("/createAccount")
+	public String createAccount(@ModelAttribute("AxisAcc")AxisAcc acc){
+		
+		return "axisAccountCreate";
+	}
+}

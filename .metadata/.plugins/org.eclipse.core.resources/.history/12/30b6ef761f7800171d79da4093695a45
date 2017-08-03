@@ -1,0 +1,10 @@
+package com.app.axis;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table("axis_table")
+public class AxisAcc {
+
+}

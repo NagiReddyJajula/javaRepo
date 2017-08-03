@@ -1,0 +1,23 @@
+package com.app.axis;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="axis_table")
+public class AxisAcc {
+
+	@Id
+	@Column(length=14)
+	private int accNo;
+	@Column(length=29)
+	private int accHolderName;
+	@Column(length=10)
+	private double amount;
+	@Column(length=12)
+	private long debitCardNo;
+	@Column(length=8)
+	private String atmPin;
+}

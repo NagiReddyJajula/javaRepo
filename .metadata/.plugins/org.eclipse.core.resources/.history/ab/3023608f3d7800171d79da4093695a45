@@ -1,0 +1,8 @@
+package com.app.dao;
+
+import com.app.axis.AxisAcc;
+
+public interface IAxisDao {
+
+	public int createAccount(AxisAcc acc);
+}

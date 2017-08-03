@@ -1,0 +1,46 @@
+package com.app.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.app.axis.AxisAcc;
+import com.app.service.IAxisService;
+
+@Controller
+public class AxisController {
+
+	@Autowired
+	private IAxisService service;
+	
+	@RequestMapping("/axisHome")
+	public String getAxisHome(){
+		return "axisHome";
+	}
+	@RequestMapping("/createAxisAccount")
+	public String createAxisAccount(ModelMap map){
+		//map.addAttribute("axisAcc",new AxisAcc());
+		return "axisAccountCreate";
+	}
+	@RequestMapping(value="/createAccount",method=RequestMethod.POST)
+	public String createAccount(@ModelAttribute("axisAcc")AxisAcc acc,ModelMap map){//,ServletRequest req){//@ModelAttribute("axisAcc")AxisAcc acc,ModelMap map){
+		//AxisAcc acc=new AxisAcc();
+		//acc.setAccHolderName((String)req.getAttribute("accHolderName"));
+		map.addAttribute("accId",service.createAccount(acc));
+		return "axisAccountCreate";
+	}
+	@RequestMapping("/viewAllAccounts")
+	public String viewAllAccounts(ModelMap map){
+		map.addAttribute("axisAc",service.viewAllAccounts());
+		return "showAccounts";
+	}
+	@RequestMapping("/updateAccountPage")
+	public String getUpdateAccountPage(@RequestParam("id")int accNo,ModelMap map){
+		map.addAttribute("ac",service.getAccountDetails(accNo));
+		return "updateAcc";
+	}
+}

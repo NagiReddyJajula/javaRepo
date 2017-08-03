@@ -1,0 +1,9 @@
+package com.app.config;
+
+import com.sun.jersey.api.core.ResourceConfig;
+
+public class JerseyConfig extends ResourceConfig{
+	public JerseyConfig() {
+	}
+
+}

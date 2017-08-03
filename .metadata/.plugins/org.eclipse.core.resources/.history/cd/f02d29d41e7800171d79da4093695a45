@@ -1,0 +1,7 @@
+package com.app.axis;
+
+@Entity
+@Table("axis_table")
+public class AxisACC {
+
+}

@@ -1,0 +1,31 @@
+package com.app.controller;
+
+import javax.servlet.ServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.app.axis.AxisAcc;
+import com.app.service.IAxisService;
+
+@Controller
+public class AxisController {
+
+	@Autowired
+	private IAxisService service;
+	
+	@RequestMapping("/createAxisAccount")
+	public String createAxisAccount(ModelMap map){
+		map.addAttribute("axisAcc",new AxisAcc());
+		return "axisAccountCreate";
+	}
+	@RequestMapping("/createAccount")
+	public String createAccount(ModelMap map,ServletRequest req){//@ModelAttribute("axisAcc")AxisAcc acc,ModelMap map){
+		AxisAcc acc=new AxisAcc();
+		acc.setAccHolderName((String)req.getAttribute("accHolderName"));
+		map.addAttribute("accId",service.createAccount(acc));
+		return "axisAccountCreate";
+	}
+}

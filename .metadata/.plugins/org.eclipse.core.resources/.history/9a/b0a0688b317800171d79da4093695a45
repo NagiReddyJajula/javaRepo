@@ -1,0 +1,9 @@
+<form action="/insertAxis">
+	<pre>
+	Account Holder Name : <input type=text name="accHolderName"><br>
+	Initial Amount		: <input type=text name="amount"><br>
+	Debit Card Number	: <input type=text name="debitCardNo"><br>
+	ATM Pin				: <input type=password name="atmPin"><br>
+	</pre>
+	<input type="button" value="Create Account">
+</form>

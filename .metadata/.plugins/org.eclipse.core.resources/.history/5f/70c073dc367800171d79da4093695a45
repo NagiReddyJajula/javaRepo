@@ -1,0 +1,14 @@
+package com.app.service.impl;
+
+import org.springframework.stereotype.Service;
+
+import com.app.axis.AxisAcc;
+import com.app.service.IAxisService;
+
+@Service
+public class AxisServiceImpl implements IAxisService {
+
+	public int createAccount(AxisAcc acc) {
+		return 0;
+	}
+}

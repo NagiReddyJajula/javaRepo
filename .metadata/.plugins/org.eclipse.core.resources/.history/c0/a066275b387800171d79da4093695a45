@@ -1,0 +1,136 @@
+package com.app.axis;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
+@Table(name="axis_table")
+//@Component
+public class AxisAcc {
+
+	@Id
+	@Column(length=14)
+	@GeneratedValue(generator="increment")
+	@GenericGenerator(name="increment",strategy="increment")
+	private int accNo;
+	@Column(length=29)
+	private String accHolderName;
+	@Column(length=10)
+	private double amount;
+	@Column(length=12)
+	private long debitCardNo;
+	@Column(length=8)
+	private String atmPin;
+	
+	public AxisAcc() {
+		super();
+	}
+
+	public AxisAcc(int accNo) {
+		super();
+		this.accNo = accNo;
+	}
+
+	public AxisAcc(int accNo, String accHolderName, double amount, long debitCardNo, String atmPin) {
+		super();
+		this.accNo = accNo;
+		this.accHolderName = accHolderName;
+		this.amount = amount;
+		this.debitCardNo = debitCardNo;
+		this.atmPin = atmPin;
+	}
+
+	public int getAccNo() {
+		return accNo;
+	}
+
+	public void setAccNo(int accNo) {
+		this.accNo = accNo;
+	}
+
+	public String getAccHolderName() {
+		return accHolderName;
+	}
+
+	public void setAccHolderName(String accHolderName) {
+		this.accHolderName = accHolderName;
+	}
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	public long getDebitCardNo() {
+		return debitCardNo;
+	}
+
+	public void setDebitCardNo(long debitCardNo) {
+		this.debitCardNo = debitCardNo;
+	}
+
+	public String getAtmPin() {
+		return atmPin;
+	}
+
+	public void setAtmPin(String atmPin) {
+		this.atmPin = atmPin;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((accHolderName == null) ? 0 : accHolderName.hashCode());
+		result = prime * result + accNo;
+		long temp;
+		temp = Double.doubleToLongBits(amount);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((atmPin == null) ? 0 : atmPin.hashCode());
+		result = prime * result + (int) (debitCardNo ^ (debitCardNo >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AxisAcc other = (AxisAcc) obj;
+		if (accHolderName == null) {
+			if (other.accHolderName != null)
+				return false;
+		} else if (!accHolderName.equals(other.accHolderName))
+			return false;
+		if (accNo != other.accNo)
+			return false;
+		if (Double.doubleToLongBits(amount) != Double.doubleToLongBits(other.amount))
+			return false;
+		if (atmPin == null) {
+			if (other.atmPin != null)
+				return false;
+		} else if (!atmPin.equals(other.atmPin))
+			return false;
+		if (debitCardNo != other.debitCardNo)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "AxisAcc [accNo=" + accNo + ", accHolderName=" + accHolderName + ", amount=" + amount + ", debitCardNo="
+				+ debitCardNo + ", atmPin=" + atmPin + "]";
+	}
+	
+}

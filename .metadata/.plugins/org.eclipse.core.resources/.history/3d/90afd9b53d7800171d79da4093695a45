@@ -1,0 +1,8 @@
+package com.app.service;
+
+import com.app.axis.AxisAcc;
+
+public interface IAxisService {
+
+	public int createAccount(AxisAcc acc);
+}
